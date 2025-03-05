@@ -5,10 +5,10 @@ import os
 
 class Activida1:
     def __init__(self):
-        #self.ruta_static = "src/pad20251/static/"
         self.ruta_actual = str(Path.cwd())
         self.ruta_static="{}/src/pad20251/static/".format(self.ruta_actual)
-        directorio = os.path.dirname(self.ruta_static)
+        self.ruta_json="{}/src/pad20251/static/json/".format(self.ruta_actual)
+        directorio = os.path.dirname(self.ruta_json)
         if not os.path.exists(directorio):
             os.makedirs(directorio, exist_ok=True)
 
@@ -36,11 +36,9 @@ act = Activida1()
 parametros = {"coin":"BTC","method":"ticker"}
 #url = "https://www.mercadobitcoin.net/api"
 url= "https://www.amiiboapi.com/api/amiibo/?name=mario"
-#datos = ingestion.obtener_datos_api(url=url, params=parametros)
 datos = act.leer_api(url=url)
 if len(datos)>0:
     print(json.dumps(datos,indent=4))
 else:
     print("no se obtubo la consulta")
 act.escribir_json(datos=datos,nombre_archivo="ingestion")
-#ingestion.validar_autoria(datos=datos,nombre_archivo="ingestion")
