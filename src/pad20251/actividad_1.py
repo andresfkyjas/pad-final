@@ -1,44 +1,32 @@
-import requests
-import json
-from pathlib import Path
-import os
+import numpy as np
+import pandas as pd
+from numpy.random import randn
 
-class Activida1:
+class Matrices():
     def __init__(self):
-        self.ruta_actual = str(Path.cwd())
-        self.ruta_static="{}/src/pad20251/static/".format(self.ruta_actual)
-        self.ruta_json="{}/src/pad20251/static/json/".format(self.ruta_actual)
-        directorio = os.path.dirname(self.ruta_json)
-        if not os.path.exists(directorio):
-            os.makedirs(directorio, exist_ok=True)
-
-    def leer_api(self,url="",params={}):
-        if len(parametros)==0:
-            url = "{}/{}/{}/".format(url,params["coin"],params["method"])
-        else:
-            url = url
-            
-        try:
-            response = requests.get(url)
-            response.raise_for_status()
-            return response.json()
-        except requests.exceptions.RequestException as error:
-            print(error)
-            return {}
+        np.random.seed(101)
     
-    def escribir_json(self,datos={},nombre_archivo="ingestion"):
-        with open("{}json/{}.json".format(self.ruta_static,nombre_archivo), "w") as archivo:
-            json.dump(datos,archivo)
-
-
+    def serie(self): # una sola dimencion
+        etiquetas= ["a","b","c"]
+        valores = [10,20,30]
+        arr = np.array(valores)
+        directorios={"amiiboSeries": "Mario Sports Superstars", "character": "Metal Mario","numero":121}
+        #print(pd.__version__)
+        mi_serie= pd.Series(data=valores,index=etiquetas)
+        print(etiquetas)
+        print(valores)
+        print(arr)
+        print(directorios)
     
-act = Activida1()
-parametros = {"coin":"BTC","method":"ticker"}
-#url = "https://www.mercadobitcoin.net/api"
-url= "https://www.amiiboapi.com/api/amiibo/?name=mario"
-datos = act.leer_api(url=url)
-if len(datos)>0:
-    print(json.dumps(datos,indent=4))
-else:
-    print("no se obtubo la consulta")
-act.escribir_json(datos=datos,nombre_archivo="ingestion")
+    def matrices(self,filas=0,columnas=0):
+        #data= pd.DataFrame() # vacio
+        #data= pd.DataFrame(randn(6,4),index="A B C D E F".split(" "), columns="W X Y Z".split(" "))
+        data= pd.DataFrame(randn(6,4), columns="W X Y Z".split(" ")) # ((w*y)-z)+y  
+        print(data)
+        data["udigital"]= "pad"
+        data["funcion"]= ((data["W"]*data["Y"])-data["Z"])+data["Y"]
+        data.to_excel("datos_generados.xlsx")
+
+matr =  Matrices()
+matr.matrices()
+#matr.serie()
