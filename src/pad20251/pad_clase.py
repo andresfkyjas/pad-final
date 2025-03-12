@@ -2,6 +2,12 @@ import pandas as pd
 import kagglehub
 import os
 import zipfile
+import matplotlib
+matplotlib.use('TkAgg')
+import matplotlib.pyplot as plt
+import tkinter
+# tkinter._test()
+import numpy as np
 
 
 class Pad_clase:
@@ -57,12 +63,52 @@ class Pad_clase:
             print(f"Creando/actualizando ")
         print("cvs creado correctamente en ")
         return df
-
+    
+    def grafico_normal(self,df):
+        cantidad = len(df)
+        # cantidad = 209306
+        np.random.seed(0)
+        generados = np.random.randn(cantidad)
+        serie = pd.Series(generados)
+        df["random_g"] = serie
+        df.to_csv("dataset_nuevo.csv")
+        #plt.figure()
+        df["num_units"].plot(kind = 'barh')
+        #print(df["random_g"].describe())
+        #plt.show()
+        plt.savefig("grafico_normal_2_line.png")
+        #plt.legend(loc='datos aleatorios')
+    
+    def grafico_df_xy(self,df):
+        if "random_g" not in df.columns:
+            np.random.seed(0)
+            df["random_g"] = np.random.randn(len(df))
+        
+        # Definir las columnas que se quieren graficar
+        columnas = ["crash_month", "random_g"]
+        
+        # (Opcional) Si deseas reiniciar el índice de df:
+        df.reset_index(drop=True, inplace=True)
+        
+        # Seleccionar las columnas y graficar
+        df1 = df[columnas]
+        df1.plot()
+        plt.xlabel("Índice")
+        plt.title("Gráfico de crash_month y random_g")
+        plt.savefig("grafico_normal_3.png")
+        plt.show()
+        
+        
+        
 
 
 padclase = Pad_clase()          
 dataset_path = padclase.download_dataset_zip()
 csv_dir = padclase.extract_zip_files(dataset_path)
 df = padclase.create_csv(csv_dir)
-
-print(df.head())
+print(df.describe(),df.count,df.info())
+df.to_csv("dataset_kaggle.csv")
+padclase.grafico_normal(df)
+padclase.grafico_df_xy(df)
+#209306
+#print(df.describe(),df.count,df.info())
