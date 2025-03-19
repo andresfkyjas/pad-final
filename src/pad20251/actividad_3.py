@@ -10,7 +10,9 @@ class actividad3:
         self.ruta_act2 = "{}/src/pad20251/actividad_3/".format(self.ruta_raiz)
         datos = {
             "n_punto": [1,2,3,4,5,6,7,8,9,10,11,12],
-            "resultado":[0,0,0,0,0,0,0,0,0,0,0,0]
+            "detalle":["Crea un DataFrame frutas que luzca así","","","","","","","","","","",""],
+            "resultado":[0,0,0,0,0,0,0,0,0,0,0,0],
+            
         }
         self.df = pd.DataFrame(datos)
         print(self.ruta_raiz)
