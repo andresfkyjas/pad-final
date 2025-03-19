@@ -31,10 +31,12 @@ jobs:
         run: python src/pad20251/actividad_1.py
       - name: paso6 - Ejecutar Actividad 2
         run: python src/pad20251/actividad_2.py
+      - name: paso7 - Ejecutar Actividad 3
+        run: python src/pad20251/actividad_3.py
       - name: Commit and Push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: Entregas actividad 1 y 2
+          commit_message: Entregas actividad 1 , 2 y 3
           commit_user_name: Andres Callejas [GitHub Actions]
           commit_user_email: andres.callejas@iudigital.edu.co
           commit_author: Andres Callejas <andres.callejas@iudigital.edu.co>

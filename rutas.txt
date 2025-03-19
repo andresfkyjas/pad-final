@@ -1,7 +1,0 @@
-d: && cd 
-d:\UIDigital\PAD_2025101\repositorios\pad-final
- && cmd /C 
- "d:\UIDigital\PAD_2025101\repositorios\pad-final\venv313\Scripts\python.exe
-  c:\Users\User\.vscode\extensions\ms-python.debugpy-2025.4.1-win32-x64\bundled\libs\debugpy\launcher
-   60528 -- 
-   D:\UIDigital\PAD_2025101\repositorios\pad-final\src\pad20251\actividad_2.py "
