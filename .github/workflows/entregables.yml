@@ -33,6 +33,8 @@ jobs:
         run: python src/pad20251/actividad_2.py
       - name: paso7 - Ejecutar Actividad 3
         run: python src/pad20251/actividad_3.py
+      - name: paso7 - Ejecutar Actividad final
+        run: python src/pad20251/actividad_final.ipynb
       - name: Commit and Push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
